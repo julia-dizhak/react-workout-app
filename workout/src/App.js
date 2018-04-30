@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+import ExcelTable from './components/ExcelTable/';
+
+export default class Workout extends Component {
   render() {
     return (
-      <div className="App">
-        workout
-      </div>
+      <React.Fragment>
+        <ExcelTable />
+      </React.Fragment>
     );
   }
 }
-
-export default App;
