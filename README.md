@@ -1,6 +1,9 @@
 # react-workout-app
 app which displays daily workout data, build by react
 
+demo is https://julia-dizhak.github.io/react-workout-app/workout/demo/
+
+
 ## Data presentation
 * create excel table
 * sorting ui
@@ -31,4 +34,7 @@ seacrh
 * post method //https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data 
 * delete
 * update
-* update
+* add user autentification
+* how to show id (random)?
+* sort for years?
+* Hiking: how steep it was

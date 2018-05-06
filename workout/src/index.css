@@ -9,6 +9,9 @@ body {
   margin: auto;
   /* border: 1px solid #ccc; */
 }
+.excel table {
+  width: 100%;
+}
 .excel td, th {
   border: 1px solid #ccc;
 }
@@ -18,4 +21,9 @@ body {
 .excel input {
   padding: 5px;
   border: 1px solid #ccc;
+}
+
+.todo {
+  width: 50%;
+  margin: 15px auto 30px;
 }

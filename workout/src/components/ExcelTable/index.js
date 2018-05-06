@@ -7,6 +7,18 @@ const headers = [
 
 const URL = 'https://workout-cd790.firebaseio.com/workouts.json';
 
+// example of data stucture
+// {
+//     "workouts": [
+//     [3, "05.05", "Running", "34:23:09", 4.40, 7.49, "-"],
+//     [3, "05.05", "Running", "35:44:6", 4.53, 7.54, "-"],
+//     [3, "02.05", "Spinning", 60, "-" , "-", "-"],
+//     [2, "31.04", "Running", "36:03:07", 5.11, 7.03, "-"],
+//     [1, "30.04", "Spinning", 60, "-", "-", "-"],
+//     [1, "29.04", "Hiking", "-", 20, "-", "-"]
+//   ]
+// }
+
 const propTypes = {
     headers: PropTypes.arrayOf(
         PropTypes.string
@@ -124,44 +136,65 @@ export default class ExcelTable extends Component{
 
         return (
             <React.Fragment>
-                <table className="excel"> 
-                    <thead>
-                        <tr>    
-                            {this.state.headers.map((title, index) => (
-                                <th 
-                                    onClick={this.handleSort}
-                                    key={index}>       
-                                    { this.state.sortby === index ? title + arrow :  title  }
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
+                <div className="todo">
+                    TODO:
+                    <ul>
+                        <li>Add posibility to add user</li>
+                        <li>Add autentification</li>
+                        <li>Post user data</li>
+                        <li>...</li>
+                    </ul>    
+                </div>    
 
-                    <tbody
-                        onDoubleClick={this.handleShowEditor}>
-                        {this.state.workouts.map((row, rowIndex) => (
-                            <tr key={rowIndex}>
-                                {row.map((cell, index) => (
-                                    <td 
-                                        key={index}
-                                        data-row={rowIndex}>
-                                        {/* { content }
-                                        { cell } */}
-                                        { this.state.edit && this.state.edit.row === rowIndex && this.state.edit.cell === index ? content : cell  }
-                                    </td>
+                <div className="todo">
+                    Legend:
+                    <ul>
+                        <li>Spinning - indoor cycling</li>
+                        <li>Repetions - the axction of repeating</li>
+                    </ul>    
+                </div> 
+
+                <div className="excel">
+                    <div>2018</div>
+                    <table > 
+                        <thead>
+                            <tr>    
+                                {this.state.headers.map((title, index) => (
+                                    <th 
+                                        onClick={this.handleSort}
+                                        key={index}>       
+                                        { this.state.sortby === index ? title + arrow :  title  }
+                                    </th>
                                 ))}
                             </tr>
+                        </thead>
 
-                            // as object
-                            // <tr key={index}>
-                            //     <td>{ item.id }</td>
-                            //     <td>{ item.name }</td>
-                            //     <td>{ item.date }</td>
-                            //     <td>{ item.duration }</td>
-                            // </tr>
-                        ))}
-                    </tbody> 
-                </table>  
+                        <tbody
+                            onDoubleClick={this.handleShowEditor}>
+                            {this.state.workouts.map((row, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {row.map((cell, index) => (
+                                        <td 
+                                            key={index}
+                                            data-row={rowIndex}>
+                                            {/* { content }
+                                            { cell } */}
+                                            { this.state.edit && this.state.edit.row === rowIndex && this.state.edit.cell === index ? content : cell  }
+                                        </td>
+                                    ))}
+                                </tr>
+
+                                // as object
+                                // <tr key={index}>
+                                //     <td>{ item.id }</td>
+                                //     <td>{ item.name }</td>
+                                //     <td>{ item.date }</td>
+                                //     <td>{ item.duration }</td>
+                                // </tr>
+                            ))}
+                        </tbody> 
+                    </table> 
+                </div>     
 
                 {/* <div>
                     { this.state.message }
