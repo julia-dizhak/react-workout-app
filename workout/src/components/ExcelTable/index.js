@@ -2,24 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const headers = [
-    "Book", "Author", "Language", "Published", "Sales"
+    'id', 'date', 'workout name', 'duration (m)', 'distance', 'speed (km/h)', 'repetion'
 ];
 
-const data = [
-    ["The Lord of the Rings", "J. R. R. Tolkien", "English", "1954–1955", "150 million"],
-    ["Le Petit Prince (The Little Prince)", "Antoine de Saint-Exupéry", "French", "1943", "140 million"],
-    ["Harry Potter and the Philosopher's Stone", "J. K. Rowling", "English", "1997", "107 million"],
-    ["And Then There Were None", "Agatha Christie", "English", "1939", "100 million"],
-    ["Dream of the Red Chamber", "Cao Xueqin", "Chinese", "1754–1791", "100 million"],
-    ["The Hobbit", "J. R. R. Tolkien", "English", "1937", "100 million"],
-    ["She: A History of Adventure", "H. Rider Haggard", "English", "1887", "100 million"]
-];
+const URL = 'https://workout-cd790.firebaseio.com/workouts.json';
 
 const propTypes = {
     headers: PropTypes.arrayOf(
         PropTypes.string
     ),
-    data: PropTypes.arrayOf(
+    workouts: PropTypes.arrayOf(
         PropTypes.string
     )
 };
@@ -30,32 +22,105 @@ export default class ExcelTable extends Component{
 
         this.state = {
             headers: headers,
-            data: data,
+            workouts: [],
+            //workouts: workouts,
             sortby: null,
-            descending: false
+            descending: false,
+            message: 'bla',
+            edit: null // {row: index, cell: index}
         }
+    }
+
+    componentDidMount() {
+        fetch(URL) // call the fetch function passing the url of the API as a parameter
+            .then((response) => response.json()) // transform the data into json
+            .then((data) => {
+                // code for handling the data you get from the API
+                let workouts = data; // get the results
+                console.log(workouts);
+
+                // calculateSpeed() {
+                //     let workouts = this.state.workouts.slice;
+                //     console.log(workouts);
+                //     let distance = workouts[4];
+                //     //let duration = 
+                //     // speed = distance / duration
+                // }
+                this.setState({workouts: workouts});
+            })
+            .catch(function(error) {
+                // this is where you run code if the server returns any errors
+                console.log(error);
+            });
     }
 
     handleSort = (event) => {       
         let column = event.target.cellIndex,
-        data = this.state.data.slice(), // copy the data
+        workouts = this.state.workouts.slice(), // copy the data
         descending = this.state.sortby === column && !this.state.descending;
 
-        data.sort(function(a, b) {
+        workouts.sort(function(a, b) {
             return descending ? (a[column] < b[column] ? 1:-1) : (a[column] > b[column] ? 1:-1);
         });
 
         this.setState({
-            data: data,
+            workouts: workouts,
             sortby: column,
             descending: descending
         })
+    }
+
+    // handlePost = (event) => {
+    //     fetch(
+    //         postUrl,
+    //         {
+    //             mode: 'no-cors',
+    //             method: 'POST',
+    //             body: JSON.stringify({
+    //                 'name': Math.random()
+    //             }),
+    //             headers: new Headers({ 'Content-Type' : 'image/jpeg', 'Accept-Charset' : 'utf-8', 'X-My-Custom-Header' : 'Zeke are cool' })
+    //         }
+    //     )
+    //     .then((response) => response.text()) // transform the data into json
+    //     .then((data) => {
+    //         // debugger;
+    //         this.setState(
+    //             {message: Math.random()}
+    //         )
+    //     })
+    // }
+
+    handleShowEditor = (event) => {
+        this.setState({
+            edit: {
+                row: parseInt(event.target.dataset.row, 10),
+                cell: event.target.cellIndex
+            }
+        });
+    }
+
+    // saving the content changes after the customer is done typing and have submitted the form (via the Enter button).
+    handleSave = (event) => {
+        event.preventDefault();
+        let input = event.target.firstChild; // input
+        //console.log(input);
+
+        let workouts = this.state.workouts.slice();
+        workouts[this.state.edit.row][this.state.edit.cell] = input.value;
+
+        this.setState({
+            edit: null, // done editing 
+            workouts: workouts
+        });
     }
               
     render() {
         const arrowUp = '\u2191',
             arrowDown = ' \u2193',
             arrow = this.state.descending ? arrowUp : arrowDown;
+
+        let content = <form onSubmit={this.handleSave}><input type='text' /></form>;
 
         return (
             <React.Fragment>
@@ -72,16 +137,36 @@ export default class ExcelTable extends Component{
                         </tr>
                     </thead>
 
-                    <tbody>
-                        {this.state.data.map((row, index) => (
-                            <tr key={index}>
-                                {row.map((item, i) => (
-                                    <td key={i}>{ item }</td>
+                    <tbody
+                        onDoubleClick={this.handleShowEditor}>
+                        {this.state.workouts.map((row, rowIndex) => (
+                            <tr key={rowIndex}>
+                                {row.map((cell, index) => (
+                                    <td 
+                                        key={index}
+                                        data-row={rowIndex}>
+                                        {/* { content }
+                                        { cell } */}
+                                        { this.state.edit && this.state.edit.row === rowIndex && this.state.edit.cell === index ? content : cell  }
+                                    </td>
                                 ))}
                             </tr>
+
+                            // as object
+                            // <tr key={index}>
+                            //     <td>{ item.id }</td>
+                            //     <td>{ item.name }</td>
+                            //     <td>{ item.date }</td>
+                            //     <td>{ item.duration }</td>
+                            // </tr>
                         ))}
                     </tbody> 
-                </table>    
+                </table>  
+
+                {/* <div>
+                    { this.state.message }
+                    <button onClick={this.handlePost}>click</button>
+                </div>      */}
             </React.Fragment>      
         )  
     }    
