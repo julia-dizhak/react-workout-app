@@ -19,9 +19,16 @@ seacrh
 *  As a customer types in an input box, filter the array of state.workouts to only show the matching content 
 
 ### Todo
+* add workout to GitHub page
+* add legend what is spinning, repetions, etc?
+* structure: array of arrays or array of objects?
+* how to render the speed (calculateSpeed on componentDidMount?)
 * use Redux to manage state
-date from date object
+* date from date object
+* speed km/h
+* parameters without bold
 * case with image by svg 
-* post //https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data 
+* post method //https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data 
 * delete
+* update
 * update

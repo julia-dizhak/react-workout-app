@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const headers = [
-    'id', 'date', 'workout name', 'duration (m)', 'distance', 'speed (km/h)', 'repetion'
+    'id', 'date', 'workout name', 'duration (m)', 'distance (km)', 'speed (km/h)', 'repetions'
 ];
 
 const URL = 'https://workout-cd790.firebaseio.com/workouts.json';
