@@ -1,5 +1,6 @@
 # react-workout-app
-app which displays daily workout data, build by react
+The app which displays daily workout data, 
+build by react
 
 demo is https://julia-dizhak.github.io/react-workout-app/workout/demo/
 
@@ -22,7 +23,6 @@ seacrh
 *  As a customer types in an input box, filter the array of state.workouts to only show the matching content 
 
 ### Todo
-* add workout to GitHub page
 * add legend what is spinning, repetions, etc?
 * structure: array of arrays or array of objects?
 * how to render the speed (calculateSpeed on componentDidMount?)
@@ -38,3 +38,5 @@ seacrh
 * how to show id (random)?
 * sort for years?
 * Hiking: how steep it was
+* favicon workout instead react
+* loading, show spinner
