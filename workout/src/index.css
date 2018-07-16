@@ -27,3 +27,10 @@ body {
   width: 50%;
   margin: 15px auto 30px;
 }
+
+/* .workout-form {
+
+} */
+.workout-form .field {
+    margin-bottom: 15px;
+}

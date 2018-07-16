@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 
-import ExcelTable from './components/ExcelTable/';
+import WorkoutTable from './components/WorkoutTable/';
+import WorkoutForm from './components/WorkoutForm';
 
 export default class Workout extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <ExcelTable />
-      </React.Fragment>
-    );
-  }
+    submit = values => {
+        window.alert(JSON.stringify(values, null, 4))
+    }
+    render() {
+        return (
+        <React.Fragment>
+            <WorkoutForm onSubmit={this.submit} />
+            <WorkoutTable />
+            
+        </React.Fragment>
+        );
+    }
 }

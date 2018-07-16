@@ -53,7 +53,7 @@ export default class ExcelTable extends Component{
             .then((data) => {
                 // code for handling the data you get from the API
                 let workouts = data; // get the results
-                console.log(workouts);
+                //console.log(workouts);
 
                 // calculateSpeed() {
                 //     let workouts = this.state.workouts.slice;

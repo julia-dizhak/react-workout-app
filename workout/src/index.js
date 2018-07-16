@@ -21,7 +21,7 @@ let store = createStore(
 )
 
 const destination =  document.getElementById("root");
-render(<Provider store="store"><Workout /></Provider>, destination);
+render(<Provider store={store}><Workout /></Provider>, destination);
 
 registerServiceWorker();
 
