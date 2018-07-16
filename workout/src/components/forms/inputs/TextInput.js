@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react';
+import ReactJson from 'react-json-view';
 
 export default function TextInput(props) {
     const {
         label,
+        input,
+        meta,
         type
     } = props;
 
@@ -11,11 +14,15 @@ export default function TextInput(props) {
             <label>
                 {label}
                 <input 
-                    {...props.input}
+                    {...input}
                     type={type}
                 /> 
             </label>
-            
+            {
+                (meta.error && meta.touched) && (
+                    <div className="error">{meta.error}</div>
+                )}
+            {/* <ReactJson src={props.meta} /> */}
         </div>    
     ) 
 }

@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import {Field, reduxForm} from 'redux-form';
-import TextInput from './forms/inputs/TextInput';
+import TextInput from './inputs/TextInput';
+import SelectInput from './inputs/SelectInput';
+import {validate} from './validation';
 
 class WorkoutForm extends Component {
   render() {
         const {handleSubmit} = this.props;
+
         return (
             <form 
                 className="todo workout-form"
@@ -13,33 +16,30 @@ class WorkoutForm extends Component {
                     name="name"
                     component={TextInput}
                     type="text"
-                    label="name"
-                    />
-                {/* <Field 
-                        name="workout"
-                        component="input"
-                        type="text" 
-                    />    */}
-                <div>
-                    <label>choose a workout</label>
-                    <Field 
-                        name="option"
-                        component="select">    
-                        <option />
-                        <option value="running">running</option> 
-                        <option value="cycling">cycling</option>  
-                        <option value="spinning">spinning</option>  
-                    </Field>    
-                </div>
-                <div>
-                    <label>date (now, today)</label>
-                    <Field 
-                        name="workout"
-                        component="input"
-                        type="text" 
-                    />    
-                </div> 
-                <div>
+                    label="your name"
+                />
+
+                 <Field 
+                    name="surname"
+                    component={TextInput}
+                    type="text"
+                    label="your surname"
+                />
+
+                <Field 
+                    name="workout-type"
+                    component={SelectInput}
+                    label="choose a workout"   
+                />  
+
+                <Field 
+                    name="date"
+                    component={TextInput}
+                    type="date"
+                    label="today"
+                />  
+        
+                {/* <div>
                     <label>duration</label>
                     <Field 
                         name="workout"
@@ -54,7 +54,15 @@ class WorkoutForm extends Component {
                         component="input"
                         type="text" 
                     />    
-                </div> 
+                </div>  */}
+
+                <Field
+                    name="newsletter"
+                    component={TextInput}
+                    type="checkbox"
+                    label="Sign up to Newsletter?"
+                />
+
                 <div>
                     <button type="submit">save</button>
                 </div>    
@@ -63,8 +71,10 @@ class WorkoutForm extends Component {
     }
 }
 
+// decorator
 WorkoutForm = reduxForm({
-    form: 'workout-form'
+    form: 'workout',
+    validate
 })(WorkoutForm);
 
 export default WorkoutForm;

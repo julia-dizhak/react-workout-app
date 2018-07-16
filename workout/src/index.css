@@ -34,3 +34,7 @@ body {
 .workout-form .field {
     margin-bottom: 15px;
 }
+
+.error {
+    color: red;
+}

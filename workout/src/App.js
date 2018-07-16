@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 
 import WorkoutTable from './components/WorkoutTable/';
-import WorkoutForm from './components/WorkoutForm';
+import WorkoutFormContainer from './components/WorkoutFormContainer';
 
 export default class Workout extends Component {
-    submit = values => {
-        window.alert(JSON.stringify(values, null, 4))
-    }
     render() {
         return (
         <React.Fragment>
-            <WorkoutForm onSubmit={this.submit} />
+            <WorkoutFormContainer />
             <WorkoutTable />
-            
         </React.Fragment>
         );
     }
