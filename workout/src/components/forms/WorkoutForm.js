@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Field, reduxForm} from 'redux-form';
 import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
-import {validate} from './validation';
+// import {validate} from './validation-sync';
+import {required, maxLength, minLength} from './validation-field-level';
 
 class WorkoutForm extends Component {
   render() {
@@ -17,6 +18,7 @@ class WorkoutForm extends Component {
                     component={TextInput}
                     type="text"
                     label="your name"
+                    validate={[required]}
                 />
 
                  <Field 
@@ -24,6 +26,7 @@ class WorkoutForm extends Component {
                     component={TextInput}
                     type="text"
                     label="your surname"
+                    validate={[required, minLength, maxLength]}
                 />
 
                 <Field 
@@ -74,7 +77,7 @@ class WorkoutForm extends Component {
 // decorator
 WorkoutForm = reduxForm({
     form: 'workout',
-    validate
+    //validate
 })(WorkoutForm);
 
 export default WorkoutForm;

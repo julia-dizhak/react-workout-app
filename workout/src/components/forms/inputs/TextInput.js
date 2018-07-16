@@ -12,11 +12,11 @@ export default function TextInput(props) {
     return (
         <div className="field">
             <label>
-                {label}
                 <input 
                     {...input}
                     type={type}
                 /> 
+                {label}
             </label>
             {
                 (meta.error && meta.touched) && (
