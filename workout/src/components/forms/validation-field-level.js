@@ -1,3 +1,5 @@
+import { values } from "../../../node_modules/redux-form";
+
 export const required = value =>
     value ? undefined : 'value is required';
 
@@ -6,4 +8,7 @@ export const minLength = value =>
 
 export const maxLength = value =>
     (value.length > 256) ? 'value is too long' : undefined;
+
+export const matchesPassword = (value, allValues)  =>
+    (value === allValues.password) ? undefined : 'password must match';  
              

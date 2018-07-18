@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {Field, reduxForm} from 'redux-form';
+import React, { Component } from 'react'
+import { Field, reduxForm } from 'redux-form';
 import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
-// import {validate} from './validation-sync';
-import {required, maxLength, minLength} from './validation-field-level';
+// import { validate } from './validation-sync';
+import { required, maxLength, minLength, matchesPassword } from './validation-field-level';
+import './workout-form.css';
 
 class WorkoutForm extends Component {
   render() {
@@ -21,7 +22,7 @@ class WorkoutForm extends Component {
                     validate={[required]}
                 />
 
-                 <Field 
+                <Field 
                     name="surname"
                     component={TextInput}
                     type="text"
@@ -58,6 +59,22 @@ class WorkoutForm extends Component {
                         type="text" 
                     />    
                 </div>  */}
+                
+                <Field 
+                    name="password"
+                    component={TextInput}
+                    type="password"
+                    label="Passowrd"
+                    validate={[required]}
+                />
+                <Field 
+                    name="confirmPassword"
+                    component={TextInput}
+                    type="text"
+                    label="Confirm password"
+                    validate={[required, matchesPassword]}
+                />
+
 
                 <Field
                     name="newsletter"

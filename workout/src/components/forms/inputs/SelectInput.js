@@ -9,13 +9,13 @@ export default function SelectInput(props) {
     return (
         <div className="field">
             <label>
-                {label}
                 <select 
                     {...props.input}>    
                     <option value="running">running</option> 
                     <option value="cycling">cycling</option>  
                     <option value="spinning">spinning</option> 
                 </select>
+                {label}
             </label>
             {/* <ReactJson src={props.meta} /> */}
         </div>    
