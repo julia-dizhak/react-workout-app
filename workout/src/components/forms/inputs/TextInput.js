@@ -3,6 +3,10 @@ import React from 'react';
 import className from 'classnames';
 
 export const getValidityClassName = meta => {
+    if (meta.asyncValidating) {
+        return 'async-validating';
+    }
+
     if (meta.active) {
         return '';
     }

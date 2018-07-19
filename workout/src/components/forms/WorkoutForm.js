@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
+import { discounts } from './Discounts';
 import capitalize from 'capitalize';
 // import { validate } from './validation-sync';
 import { 
@@ -99,6 +100,8 @@ class WorkoutForm extends Component {
                     label="Sign up to Newsletter?"
                 />
 
+                <FieldArray name="discountCodes" component={discounts} />
+
                 <div className="button-wrap">
                     <button type="submit">save</button>
                 </div>    
@@ -111,7 +114,8 @@ class WorkoutForm extends Component {
 WorkoutForm = reduxForm({
     form: 'workout',
     //validate
-    asyncValidate
+    asyncValidate,
+    asyncBlurFields: ['username']
 })(WorkoutForm);
 
 export default WorkoutForm;
