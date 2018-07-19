@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactJson from 'react-json-view';
+//import ReactJson from 'react-json-view';
 import className from 'classnames';
 
 export const getValidityClassName = meta => {
@@ -25,7 +25,7 @@ export default function TextInput(props) {
     return (
         <div className={className(
             'custom-input-container',
-            {'flex-row-reverse': type == 'checkbox'},
+            {'flex-row-reverse': type === 'checkbox'},
             {dirty: meta.dirty},
             getValidityClassName(meta)
         )}>

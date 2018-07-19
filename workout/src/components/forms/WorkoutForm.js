@@ -3,7 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
 // import { validate } from './validation-sync';
-import { required, maxLength, minLength, matchesPassword } from './validation-field-level';
+import { 
+    required, 
+    maxLength, 
+    minLength, 
+    matchesPassword,
+    asyncValidate 
+} from './validation-field-level';
 import './workout-form.css';
 
 class WorkoutForm extends Component {
@@ -18,7 +24,7 @@ class WorkoutForm extends Component {
                     name="name"
                     component={TextInput}
                     type="text"
-                    label="your name"
+                    label="name"
                     validate={[required]}
                 />
 
@@ -26,7 +32,15 @@ class WorkoutForm extends Component {
                     name="surname"
                     component={TextInput}
                     type="text"
-                    label="your surname"
+                    label="surname"
+                    validate={[required, minLength]}
+                />
+
+                <Field 
+                    name="username"
+                    component={TextInput}
+                    type="text"
+                    label="username"
                     validate={[required, minLength, maxLength]}
                 />
 
@@ -95,6 +109,7 @@ class WorkoutForm extends Component {
 WorkoutForm = reduxForm({
     form: 'workout',
     //validate
+    asyncValidate
 })(WorkoutForm);
 
 export default WorkoutForm;
