@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form';
 import TextInput from './inputs/TextInput';
 import SelectInput from './inputs/SelectInput';
+import capitalize from 'capitalize';
 // import { validate } from './validation-sync';
 import { 
     required, 
@@ -34,6 +35,7 @@ class WorkoutForm extends Component {
                     type="text"
                     label="surname"
                     validate={[required, minLength]}
+                    normalize={capitalize}
                 />
 
                 <Field 
@@ -81,6 +83,7 @@ class WorkoutForm extends Component {
                     label="Passowrd"
                     validate={[required]}
                 />
+
                 <Field 
                     name="confirmPassword"
                     component={TextInput}
@@ -89,7 +92,6 @@ class WorkoutForm extends Component {
                     validate={[required, matchesPassword]}
                 />
 
-
                 <Field
                     name="newsletter"
                     component={TextInput}
@@ -97,7 +99,7 @@ class WorkoutForm extends Component {
                     label="Sign up to Newsletter?"
                 />
 
-                <div>
+                <div className="button-wrap">
                     <button type="submit">save</button>
                 </div>    
             </form>
